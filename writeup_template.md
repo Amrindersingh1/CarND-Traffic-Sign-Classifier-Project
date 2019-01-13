@@ -71,16 +71,22 @@ My final model consisted of the following layers:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
-| RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
- 
+| Input         		| 32x32x1 GRAY image   							| 
+| Convolution 5x5     	| 1x1 stride, valid padding, outputs 28x28x6 	|
+| Max pooling	      	| 28x28x6 in, 14x14x6 out 				|
+| ELU					|				activation								|
+| Convolution 5x5     	| 1x1 stride, valid padding, outputs 10x10x16 	|
+| Max pooling	      	| 10x10x16 in, 5x5x16 out 				|
+| ELU					|			activation |
+| Flatten | input: 5x5x16 output: 400 |
+| Fully Connected layer | input: 400 output: 120 |
+| ELU | activation |
+| Dropout | keep prob: 0.5 |
+| Fully Connected layer | input: 120 output: 84 |
+| ELU | activation |
+| Dropout | keep prob: 0.5 |
+| Fully Connected layer | input: 84 output: 43 |
+
 
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.

@@ -1,8 +1,6 @@
-# **Traffic Sign Recognition** 
+# ** Amrinder's Traffic Sign Recognition** 
 
 ## Writeup
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
 
 ---
 
@@ -16,68 +14,55 @@ The goals / steps of this project are the following:
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
 
-
-[//]: # (Image References)
-
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
-
-## Rubric Points
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
-
 ---
 ### Writeup / README
 
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
+#### 1. Writeup / README that includes all the rubric points and how I addressed each one.
 
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+You're reading it! and here is a link to my [project code](https://github.com/Amrindersingh1/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
 
 ### Data Set Summary & Exploration
 
-#### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
+#### 1. Basic summary of the data set.
 
-I used the pandas library to calculate summary statistics of the traffic
+I used the numpy library to calculate summary statistics of the traffic
 signs data set:
 
-* The size of training set is ?
-* The size of the validation set is ?
-* The size of test set is ?
-* The shape of a traffic sign image is ?
-* The number of unique classes/labels in the data set is ?
+* The size of training set is 34799
+* The size of the validation set is 4410
+* The size of test set is 12630
+* The shape of a traffic sign image is (32,32,3)
+* The number of unique classes/labels in the data set is 43
 
-#### 2. Include an exploratory visualization of the dataset.
+#### 2. exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+Here is an exploratory visualization of the data set:
+![alt text](writeup/trainsetimages.PNG)
 
-![alt text][image1]
+Here is the bar chart showing training set count for each label:
+![alt text](writeup/trainsetlabelbarchart.PNG)
+
+
 
 ### Design and Test a Model Architecture
 
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-As a first step, I decided to convert the images to grayscale because ...
+For the preprocessing of images i decided to follow the what was taught in class and also on reading technical paper the technique were also used there to get good accuracy.
+The first technique used was to convert all the images to grayscale.
+Here is an example of a traffic sign image before and after grayscaling:
+![alt text](writeup/gray.PNG)]
 
-Here is an example of a traffic sign image before and after grayscaling.
+As a next step, I normalized the image data because on finding the mean of all three sets it was quite high so i decided to bring it close to zero which turnaround to be around 0.35
+Here is an example of a traffic sign image before and after normalising:
+![alt text](writeup/normalised.PNG)
 
-![alt text][image2]
+As i visualized the count for each label of training set i found that there were a lot of classes with very less examples. It might create a problem for training model. so i decided to generate random images for all the labels to get count of each label around 4000.
+The techniques I used were referred from the project 3 session held on zoom that applies random rotation and offset and position to images to generate more images.
 
-As a last step, I normalized the image data because ...
+The difference between the original data set and the augmented data set is the following:
+![alt text](writeup/compare.png)
 
-I decided to generate additional data because ... 
-
-To add more data to the the data set, I used the following techniques because ... 
-
-Here is an example of an original image and an augmented image:
-
-![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
